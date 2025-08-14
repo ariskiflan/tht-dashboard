@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+  --color-soft-blue: #1e3a8a; /* biru tua soft */
+  --color-soft-gray: #94a3b8; /* abu soft */
+  --color-soft-white: #f8fafc; /* putih soft */
+}
