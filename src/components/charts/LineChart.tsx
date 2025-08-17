@@ -1,17 +1,11 @@
 import _ChartJS from "../../config/chartConfig";
 import { Line } from "react-chartjs-2";
-
-// label dummy
-
-interface Recipes {
-  name: string;
-  rating: number;
-}
+import type { Recipe } from "../../types/app";
 
 interface LineChartProps {
   color: string;
   type: boolean;
-  recipes: Recipes[];
+  recipes: Recipe[];
 }
 
 const LineChart = ({ color, type, recipes }: LineChartProps) => {
@@ -35,11 +29,11 @@ const LineChart = ({ color, type, recipes }: LineChartProps) => {
   };
 
   const options = {
-    responsive: true, // membuat chart responsive
+    responsive: true,
     maintainAspectRatio: type,
     plugins: {
       legend: {
-        display: type, // hilangkan legend
+        display: type,
       },
     },
     scales: {

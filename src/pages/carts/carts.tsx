@@ -159,7 +159,7 @@ const carts = () => {
                           align="right"
                           sx={{ color: "#f8fafc", fontWeight: "bold" }}
                         >
-                          Diskon Price
+                          Discount Price
                         </TableCell>
                         <TableCell
                           align="right"

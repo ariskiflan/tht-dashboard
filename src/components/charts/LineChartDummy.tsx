@@ -1,8 +1,6 @@
 import _ChartJS from "../../config/chartConfig";
 import { Line } from "react-chartjs-2";
 
-// label dummy
-
 interface LineChartProps {
   color: string;
 }
@@ -25,24 +23,24 @@ const LineChartDummy = ({ color }: LineChartProps) => {
   };
 
   const options = {
-    responsive: true, // membuat chart responsive
+    responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false, // hilangkan legend
+        display: false,
       },
     },
     scales: {
       x: {
-        display: false, // hilangkan axis X
+        display: false,
         grid: {
-          display: false, // hilangkan grid X
+          display: false,
         },
       },
       y: {
-        display: false, // hilangkan axis Y
+        display: false,
         grid: {
-          display: false, // hilangkan grid Y
+          display: false,
         },
       },
     },

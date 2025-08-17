@@ -1,19 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import _ChartJS from "../../config/chartConfig";
+import type { Product } from "../../types/app";
 
-interface Product {
-  id: number;
-  title: string;
-  images: string[];
-  category: string;
-  sku?: string;
-  stock?: number;
-  price: number;
-  rating: number;
-  availabilityStatus?: string;
-}
-
-// ✅ props interface khusus untuk komponen ini
 interface DonutsChartProps {
   products: Product[];
 }

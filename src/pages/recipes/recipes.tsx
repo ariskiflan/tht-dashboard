@@ -6,7 +6,7 @@ import LineChartDummy from "../../components/charts/LineChartDummy";
 interface Recipe {
   id: number;
   name: string;
-  image?: string; // optional kalau tidak selalu ada
+  image?: string;
   tags: string[];
   mealType: string[];
 }
@@ -106,7 +106,6 @@ const recipes = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl p-6 flex flex-col justify-between shadow-md h-full">
               <div className=" space-y-6">
-                {/* Summary */}
                 <div className="bg-soft-blue text-white lg:p-6 p-2 rounded-2xl shadow-md flex items-center justify-between">
                   <h2 className="text-xl font-bold">Recipes Overview</h2>
 
@@ -115,14 +114,12 @@ const recipes = () => {
                   </div>
                 </div>
 
-                {/* Grid Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3  gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
                   {recipes.slice(0, 12).map((recipe, index) => (
                     <div
                       key={index}
                       className="bg-soft-white rounded-xl shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden"
                     >
-                      {/* Image */}
                       <div className="h-40 w-full overflow-hidden">
                         <img
                           src={recipe.image}
@@ -131,14 +128,12 @@ const recipes = () => {
                         />
                       </div>
 
-                      {/* Content */}
                       <div className="p-5">
                         {/* Nama Recipe */}
                         <h3 className="text-lg font-bold text-soft-blue mb-3">
                           {recipe.name}
                         </h3>
 
-                        {/* Tags */}
                         <div className="flex flex-wrap gap-2">
                           {recipe.tags.map((items: string, index: number) => (
                             <span
@@ -169,10 +164,8 @@ const recipes = () => {
               <div className="relative border-l-2 border-soft-blue/30 pl-6 space-y-6">
                 {recipes.slice(0, 11).map((recipe, index) => (
                   <div key={index} className="relative">
-                    {/* Bulatan timeline */}
                     <span className="absolute -left-[11px] top-1 w-5 h-5 bg-soft-blue rounded-full border-2 border-white"></span>
 
-                    {/* Konten */}
                     <div className="bg-white shadow-sm p-5 rounded-xl hover:shadow-md transition-shadow">
                       <h3 className="text-lg font-bold text-gray-800">
                         {recipe.name}
