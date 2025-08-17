@@ -37,7 +37,7 @@ const BarChart = ({ categoryCounts }: ChildChartProps) => {
 
   return (
     <>
-      <div className="h-[300px] md:h-[400px] rounded-2xl shadow-md p-4 bg-white flex flex-col">
+      <div className="h-full rounded-2xl shadow-md p-4 bg-white flex flex-col">
         <p className="text-xl text-soft-gray font-semibold mb-5">
           Total Products by Category
         </p>

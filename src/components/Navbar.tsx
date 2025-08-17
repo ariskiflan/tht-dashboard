@@ -1,5 +1,4 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaShoppingCart } from "react-icons/fa";
 import type { SetStateAction, Dispatch } from "react";
 
 interface SidebarProps {
@@ -18,7 +17,11 @@ const Navbar = ({ setSidebarOpen }: SidebarProps) => {
         </div>
 
         <div>
-          <FaShoppingCart size={36} />
+          <img
+            className="rounded-full w-10 h-10 object-cover"
+            src="https://www.marketeers.com/_next/image/?url=https%3A%2F%2Fimagedelivery.net%2F2MtOYVTKaiU0CCt-BLmtWw%2F22607e88-625f-4835-eaba-cad512b96300%2Fw%3D640&w=1920&q=75"
+            alt=""
+          />
         </div>
       </nav>
     </>

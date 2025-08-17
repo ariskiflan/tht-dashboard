@@ -10,7 +10,7 @@ const Layout = () => {
       <div className="lg:flex bg-gray-100 h-screen ">
         <Sidebar setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
 
-        <div className="overflow-y-auto flex-1">
+        <div className="flex-1 lg:ml-64">
           <Dashboard
             setSidebarOpen={setSidebarOpen}
             sidebarOpen={sidebarOpen}

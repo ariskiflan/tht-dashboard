@@ -1,13 +1,8 @@
 import { FaHome, FaBoxOpen, FaShoppingCart, FaUtensils } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
-import { Link } from "react-router";
-import type { ReactNode, Dispatch, SetStateAction } from "react";
-
-interface MenuItem {
-  name: string;
-  link: string;
-  icon: ReactNode;
-}
+import { Link, useLocation } from "react-router";
+import type { Dispatch, SetStateAction } from "react";
+import type { MenuItem } from "../types/app";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -22,6 +17,8 @@ const menuItems: MenuItem[] = [
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
+  const location = useLocation();
+
   return (
     <>
       {sidebarOpen && (
@@ -32,7 +29,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       )}
 
       <div
-        className={`w-64 bg-soft-blue fixed top-0  h-screen ${sidebarOpen ? "translate-x-0" : "-translate-x-64"} lg:static lg:translate-x-0 transition-all duration-200 ease-in-out z-50`}
+        className={`w-64 bg-soft-blue fixed top-0 h-screen ${sidebarOpen ? "translate-x-0" : "-translate-x-64"} lg:translate-x-0 transition-all duration-200 ease-in-out z-50`}
       >
         <div className="flex flex-col gap-10">
           <div className="border-b text-white flex justify-between items-center p-4">
@@ -44,16 +41,27 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
           <div>
             <ul className="space-y-4">
-              {menuItems.map((item: MenuItem, index) => (
-                <li key={index}>
-                  <Link to={item.link}>
-                    <p className="flex text-2xl text-white items-center gap-5 hover:bg-blue-900 px-3 py-2 rounded transition-colors">
-                      {item.icon}
-                      {item.name}
-                    </p>
-                  </Link>
-                </li>
-              ))}
+              {menuItems.map((item: MenuItem, index: number) => {
+                const isActive = location.pathname === item.link;
+
+                return (
+                  <li key={index}>
+                    <Link to={item.link} onClick={() => setSidebarOpen(false)}>
+                      <p
+                        className={`flex text-2xl items-center gap-5 px-3 py-2 rounded transition-colors 
+              ${
+                isActive
+                  ? " text-white font-bold"
+                  : "text-white hover:bg-blue-800"
+              }`}
+                      >
+                        {item.icon}
+                        {item.name}
+                      </p>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

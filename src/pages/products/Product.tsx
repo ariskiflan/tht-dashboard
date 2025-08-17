@@ -25,7 +25,6 @@ interface Product {
 const Product = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [query, setQuery] = useState("");
-  const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<number[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -47,15 +46,12 @@ const Product = () => {
       fetchAllProducts();
       return;
     }
-    setLoading(true);
     try {
       const data = await searchProducts(searchQuery);
       setProducts(data.products || []);
       setPage(0); // reset ke page pertama
     } catch (error) {
       console.error("Error searching products:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -125,6 +121,8 @@ const Product = () => {
 
   return (
     <div className="p-4 my-20">
+      <h1 className="text-3xl font-bold mb-6">Products</h1>
+
       {/* Search Input */}
       <div className="my-4 flex items-center gap-4">
         <input
