@@ -1,69 +1,31 @@
-# React + TypeScript + Vite
+#Cara Run Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. clone repository
+   https://github.com/ariskiflan/tht-dashboard.git
+   cd nama-repo
 
-Currently, two official plugins are available:
+2. Install Dependencies
+   npm install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. Menjalankan Project
+   - menggunakan docker compose
+     run project: docker-compose up --build
+     akses di browser : http://localhost:5173
+     Stop project: docker-compose down
+   - Menjalankan Secara Lokal
+     run project: npm run dev
+     akses di browser : http://localhost:5173
+     Stop project: Tekan CTRL + C di terminal
 
-## Expanding the ESLint configuration
+#halaman yang sudah selesai
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. halaman dashboard utama
+2. halaman product
+3. halaman recipes
+4. halaman carts
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+#teknologi tambahan yang digunakan
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. react-icons
+2. material ui
+3. react router
