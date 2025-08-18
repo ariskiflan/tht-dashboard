@@ -1,11 +1,21 @@
 import { Bar } from "react-chartjs-2";
 import _ChartJS from "../../config/chartConfig";
+import type { Product } from "../../types/app";
 
 interface ChildChartProps {
-  categoryCounts: Record<string, number>;
+  products: Product[];
 }
 
-const BarChart = ({ categoryCounts }: ChildChartProps) => {
+const BarChart = ({ products }: ChildChartProps) => {
+  const categoryCounts = products.reduce(
+    (acc: Record<string, number>, product) => {
+      acc[product.category] = (acc[product.category] || 0) + 1;
+
+      return acc;
+    },
+    {}
+  );
+
   const colors = [
     "rgba(255, 99, 132, 0.6)",
     "rgba(54, 162, 235, 0.6)",

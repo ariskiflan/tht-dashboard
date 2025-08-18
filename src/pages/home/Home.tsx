@@ -11,28 +11,17 @@ import DonutsChart from "../../components/charts/DonutsChart";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import LineChart from "../../components/charts/LineChart";
 import LineChartDummy from "../../components/charts/LineChartDummy";
+import TableCarts from "../../components/TableCarts";
 
 import type { Cart } from "../../types/app";
 import type { Recipe } from "../../types/app";
 import type { Product } from "../../types/app";
 import type { Post } from "../../types/app";
 
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TablePagination from "@mui/material/TablePagination";
-
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [carts, setcarts] = useState<Cart[]>([]);
-
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [totalProducts, setTotalProducts] = useState<number>(0);
   const [totalRecipes, setTotalRecipes] = useState<number>(0);
@@ -54,8 +43,6 @@ const Home = () => {
   const fetchAllcarts = async () => {
     try {
       const res = await getAllcarts();
-
-      setcarts(res.carts as Cart[]);
 
       const sum: number = res.carts.reduce(
         (acc: number, cart: Cart) => acc + cart.total,
@@ -105,31 +92,6 @@ const Home = () => {
     fetchAllcarts();
     fetchAllPost();
   }, []);
-
-  const categoryCounts = products.reduce(
-    (acc: Record<string, number>, product) => {
-      acc[product.category] = (acc[product.category] || 0) + 1;
-
-      return acc;
-    },
-    {}
-  );
-
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const paginatedCarts = carts.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage
-  );
 
   return (
     <>
@@ -276,7 +238,7 @@ const Home = () => {
           </div>
 
           <div className="lg:col-span-2">
-            <BarChart categoryCounts={categoryCounts} />
+            <BarChart products={products} />
           </div>
 
           <div className="col-span-1">
@@ -362,88 +324,7 @@ const Home = () => {
           </div>
 
           <div className="lg:col-span-2 lg:row-span-2">
-            <div className="bg-white rounded-xl p-6 flex flex-col shadow-md h-full">
-              <div className="text-xl font-semibold mb-5 text-soft-gray">
-                Carts
-              </div>
-
-              <div>
-                <TableContainer className="w-full overflow-x-auto bg-soft-white rounded-lg shadow">
-                  <Table className="min-w-[800px]" aria-label="products table">
-                    <TableHead className="bg-soft-blue">
-                      <TableRow>
-                        <TableCell
-                          sx={{ color: "#f8fafc", fontWeight: "bold" }}
-                        >
-                          ID Cart
-                        </TableCell>
-                        <TableCell
-                          sx={{ color: "#f8fafc", fontWeight: "bold" }}
-                        >
-                          Total Product
-                        </TableCell>
-                        <TableCell
-                          sx={{ color: "#f8fafc", fontWeight: "bold" }}
-                        >
-                          Total Price
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          sx={{ color: "#f8fafc", fontWeight: "bold" }}
-                        >
-                          Total Diskon
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          sx={{ color: "#f8fafc", fontWeight: "bold" }}
-                        >
-                          Total
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-
-                    <TableBody>
-                      {paginatedCarts.map((cart, index) => {
-                        return (
-                          <TableRow
-                            key={index}
-                            hover
-                            className={
-                              index % 2 === 0
-                                ? "bg-soft-white"
-                                : "bg-soft-gray/20"
-                            }
-                          >
-                            <TableCell>{cart.id}</TableCell>
-                            <TableCell>{cart.totalProducts}</TableCell>
-                            <TableCell>${Math.round(cart.total)}</TableCell>
-                            <TableCell sx={{ color: "red" }}>
-                              -${Math.round(cart.discountedTotal)}
-                            </TableCell>
-                            <TableCell
-                              sx={{ color: "green", fontWeight: "bold" }}
-                            >
-                              ${Math.round(cart.total - cart.discountedTotal)}
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                    </TableBody>
-                  </Table>
-
-                  <TablePagination
-                    rowsPerPageOptions={[]}
-                    component="div"
-                    count={carts.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    className="bg-soft-white text-soft-blue [&_.MuiSelect-icon]:text-soft-blue"
-                  />
-                </TableContainer>
-              </div>
-            </div>
+            <TableCarts numberRows={10} />
           </div>
 
           <div className="col-span-1 lg:row-span-1">
